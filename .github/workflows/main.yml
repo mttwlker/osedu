@@ -14,15 +14,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # - name: Check for file rename
-    #   id: check_rename
-    #   run: |
-    #     changed_files=$(git diff --name-status "${{ github.event.before }}" "${{ github.sha }}")
-    #     if [[ -n "$changed_files" ]]; then
-    #       echo "::set-output name=files_changed::true"
-    #     else
-    #       echo "::set-output name=files_changed::false"
-    #     fi
+    - name: Check for file rename
+      id: check_rename
+      run: |
+        changed_files=$(git diff --name-status "${{ github.event.before }}" "${{ github.sha }}")
+        if [[ -n "$changed_files" ]]; then
+          echo "::set-output name=files_changed::true"
+        else
+          echo "::set-output name=files_changed::false"
+        fi
 
     - name: Grant execute permissions to the script
       run: chmod +x $GITHUB_WORKSPACE/automation/aws-post-trigger-sitemap.sh
