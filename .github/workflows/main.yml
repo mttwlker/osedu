@@ -29,7 +29,7 @@ jobs:
 
 
     - name: Run script which calls lambda function
-      # if: steps.check_rename.outputs.files_changed == 'true'
+      if: steps.check_rename.outputs.files_changed == 'true'
       run: |
         # script link automation folder at root
         automation/aws-post-trigger-sitemap.sh
