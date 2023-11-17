@@ -14,14 +14,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Check for file rename
-      id: check_rename
-      run: |
-        if [[ -n "$(git diff --name-status ${{ github.sha }}^ -- ${{ github.sha }})" ]]; then
-          echo "::set-output name=files_changed::true"
-        else
-          echo "::set-output name=files_changed::false"
-        fi
+    # - name: Check for file rename
+    #   id: check_rename
+    #   run: |
+    #     if [[ -n "$(git diff --name-status ${{ github.sha }}^ -- ${{ github.sha }})" ]]; then
+    #       echo "::set-output name=files_changed::true"
+    #     else
+    #       echo "::set-output name=files_changed::false"
+    #     fi
 
 
     - name: Grant execute permissions to the script
@@ -29,7 +29,7 @@ jobs:
 
 
     - name: Run script which calls lambda function
-      if: steps.check_rename.outputs.files_changed == 'true'
+      # if: steps.check_rename.outputs.files_changed == 'true'
       run: |
         # script link automation folder at root
         automation/aws-post-trigger-sitemap.sh
