@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     # - name: Check for file rename
     #   id: check_rename
     #   run: |
@@ -23,6 +23,10 @@ jobs:
     #     else
     #       echo "::set-output name=files_changed::false"
     #     fi
+
+    - name: Grant execute permissions to the script
+      run: chmod +x $GITHUB_WORKSPACE/automation/aws-post-trigger-sitemap.sh
+
 
     - name: Run script which calls lambda function
       # if: steps.check_rename.outputs.files_changed == 'true'
