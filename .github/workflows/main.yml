@@ -25,4 +25,4 @@ jobs:
       # if: steps.check_rename.outputs.files_changed == 'true'
       run: |
         # script link automation folder at root
-        ./automation/aws-post-trigger-sitemap.sh
+        automation/aws-post-trigger-sitemap.sh
