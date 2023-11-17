@@ -1,0 +1,26 @@
+name: Run Script on File Rename
+
+on:
+  push:
+    paths:
+      - '**/*'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check for file rename
+      id: check_rename
+      run: |
+        if [[ -n "$(git diff --name-status ${{ github.event.before }} ${{ github.sha }})" ]]; then
+          echo "::set-output name=files_changed::true"
+        else
+          echo "::set-output name=files_changed::false"
+        fi
+
+    - name: Run script on file rename
+      if: steps.check_rename.outputs.files_changed == 'true'
+      run: |
+        # Your script execution command goes here
+        ./automation/aws-post-trigger-sitemap.sh
