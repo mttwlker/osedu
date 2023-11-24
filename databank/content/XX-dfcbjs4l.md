@@ -1,4 +1,4 @@
-# Bouncing Ball
+# p5.js - Bouncing Ball
 Create a sketch which has a bounding ball that responds to keyboard input, changing colour when a key is pressed.
 ## Sketch Code
 ```
